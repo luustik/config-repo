@@ -28,3 +28,13 @@ spring:
           uri: lb://rating-service
           predicates:
             - Path=/api/v1/ratings/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
