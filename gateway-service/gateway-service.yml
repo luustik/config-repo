@@ -29,6 +29,13 @@ spring:
           predicates:
             - Path=/api/v1/ratings/**
 
+eureka:
+  instance:
+    metadata-map:
+      metrics.path: /actuator/prometheus
+      health.path: /actuator/health
+      management.context-path: /actuator
+
 management:
   endpoints:
     web:
