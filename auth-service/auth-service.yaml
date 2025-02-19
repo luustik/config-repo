@@ -1,0 +1,28 @@
+server:
+  port: 8085
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
+feign:
+  client:
+    name:
+      driver: driver-service
+      passenger: passenger-service
+    path:
+      driver: api/v1/drivers
+      passenger: api/v1/passengers
+
+
+keycloak:
+  user-management:
+    client-id: ${CLIENT_ID:admin-cli}
+    client-secret: ${CLIENT_SECRET:igDF03b7GKkPjYfzDJo9RhUYPtSJGNA3}
+    username: ${KEYCLOAK_ADMIN:admin}
+    password: ${KEYCLOAK_ADMIN_PASSWORD:admin}
+    server-url: ${KEYCLOAK_ADMIN_CLIENT_URL:http://localhost:7000}
+
+  auth:
+    client-id: ${CLIENT_ID_FOR_AUTH_KC:cab-aggregator-app}
+  realm: ${KC_REALM:cab-aggregator-app}
