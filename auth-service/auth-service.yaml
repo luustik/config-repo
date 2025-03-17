@@ -4,6 +4,23 @@ server:
 eureka:
   instance:
     prefer-ip-address: true
+    instance:
+    metadata-map:
+          metrics:
+            path: /actuator/prometheus
+          health:
+            path: /actuator/health
+          context-path: /actuator
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 
 feign:
   client:
