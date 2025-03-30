@@ -34,6 +34,41 @@ spring:
           predicates:
             - Path=/api/v1/auth/**
 
+        - id: driver-service-api-docs
+          uri: lb://driver-service
+          predicates:
+            - Path=/driver-service/v3/api-docs, /driver-service/swagger-ui.html
+          filters:
+            - StripPrefix=1
+
+        - id: passenger-service-api-docs
+          uri: lb://passenger-service
+          predicates:
+            - Path=/passenger-service/v3/api-docs, /passenger-service/swagger-ui.html
+          filters:
+            - StripPrefix=1
+
+        - id: rating-service-api-docs
+          uri: lb://rating-service
+          predicates:
+            - Path=/rating-service/v3/api-docs, /rating-service/swagger-ui.html
+          filters:
+            - StripPrefix=1
+
+        - id: ride-service-api-docs
+          uri: lb://ride-service
+          predicates:
+            - Path=/ride-service/v3/api-docs, /ride-service/swagger-ui.html
+          filters:
+            - StripPrefix=1
+
+        - id: auth-service-api-docs
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth-service/v3/api-docs, /auth-service/swagger-ui.html
+          filters:
+            - StripPrefix=1
+
 eureka:
   instance:
     metadata-map:
@@ -60,3 +95,23 @@ management:
 logging:
   pattern:
     correlation: "[${spring.application.name},%X{traceId:-},%X{spanId:-}]"
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    urls:
+      - url: /driver-service/v3/api-docs
+        name: Driver Service
+      - url: /passenger-service/v3/api-docs
+        name: Passenger Service
+      - url: /rating-service/v3/api-docs
+        name: Rating Service
+      - url: /ride-service/v3/api-docs
+        name: Ride Service
+      - url: /auth-service/v3/api-docs
+        name: Auth Service
+    config-url: /v3/api-docs/swagger-config
+    path: /swagger-ui.html
+    enabled: true
