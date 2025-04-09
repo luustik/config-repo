@@ -42,3 +42,6 @@ keycloak:
 openapi:
   gateway:
     swagger-url: http://localhost:8888/auth-service
+
+springdoc:
+  remove-broken-reference-definitions: false
