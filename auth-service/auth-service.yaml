@@ -21,6 +21,12 @@ management:
     metrics:
       export:
         enabled: true
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN:http://lcoalhost:9411/api/v2/spans}
+  tracing:
+    sampling:
+      probability: 1.0
 
 feign:
   client:
